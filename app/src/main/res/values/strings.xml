@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android组件学习</string>
+    <string
+        name="title_activity_floating_action_button">
+        FloatingActionButtonActivity
+    </string>
+</resources>

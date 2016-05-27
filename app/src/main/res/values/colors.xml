@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="zj_gay">#555555</color>
+    <color name="zj_gay_light">#cccccc</color>
+    <item name="gray_background" type="color" >#f3f3f3</item>
+    <item name="clearColor" type="color" >#00000000</item>
+    <item name="zj_blue" type="color" >#4a9de5</item>
+</resources>
