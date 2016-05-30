@@ -1,4 +1,4 @@
-package cn.psvmc.zjlearnandroid.C;
+package cn.psvmc.zjlearnandroid;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,10 +13,11 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.psvmc.zjlearnandroid.FloatingActionButtonDemo.FloatingActionButtonActivity;
+import cn.psvmc.zjlearnandroid.TabbarDemo.C.TabbarActivity;
 import cn.psvmc.zjlearnandroid.Model.ListItemModel;
-import cn.psvmc.zjlearnandroid.R;
-import cn.psvmc.zjlearnandroid.recycleview.RecycleViewDivider;
-import cn.psvmc.zjlearnandroid.recycleview.ShareListAdapter;
+import cn.psvmc.zjlearnandroid.RecycleViewDemo.RecycleViewDivider;
+import cn.psvmc.zjlearnandroid.RecycleViewDemo.ShareListAdapter;
 
 public class MainActivity extends AppCompatActivity {
     Context context = this;

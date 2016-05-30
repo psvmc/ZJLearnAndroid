@@ -1,4 +1,4 @@
-package cn.psvmc.zjlearnandroid.recycleview;
+package cn.psvmc.zjlearnandroid.RecycleViewDemo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
