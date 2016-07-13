@@ -1,4 +1,4 @@
-package cn.psvmc.zjlearnandroid.TabbarDemo.Lib;
+package cn.psvmc.zjlearnandroid.DemoTabbar.Adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.util.ArrayList;
+
+import cn.psvmc.zjlearnandroid.DemoTabbar.M.ZJTabInfo;
+import cn.psvmc.zjlearnandroid.DemoTabbar.Delegate.ZJTabSelectDelegate;
 
 public class ZJTabsAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener {
     public ZJTabSelectDelegate delegate;

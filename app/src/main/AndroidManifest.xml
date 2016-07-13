@@ -15,12 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TabbarDemo.C.TabbarActivity">
+        <activity android:name=".DemoTabbar.C.TabbarActivity">
         </activity>
-        <activity
-            android:name=".FloatingActionButtonDemo.FloatingActionButtonActivity"
-            android:label="@string/title_activity_floating_action_button"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity">
+        </activity>
+        <activity android:name=".DemoTabbar2.C.Tabbar2Activity">
         </activity>
     </application>
 

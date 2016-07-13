@@ -1,34 +1,35 @@
-package cn.psvmc.zjlearnandroid.TabbarDemo.C;
+package cn.psvmc.zjlearnandroid.DemoTabbar.C;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import cn.psvmc.zjlearnandroid.R;
 
-public class Fragment1 extends Fragment {
-    private String TAG = "Fragment1";
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
+public class Fragment2 extends Fragment {
+    private String TAG = "Fragment2";
+    RelativeLayout back_layout;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate ");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment1, container, false);
-		
+        Log.i(TAG, "onCreateView: ");
+        View parentView = inflater.inflate(R.layout.fragment2, container, false);
+        back_layout = (RelativeLayout)parentView.findViewById(R.id.back_layout);
+        back_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment2.this.getActivity().onBackPressed();
+            }
+        });
         return parentView;
     }
 
@@ -40,6 +41,6 @@ public class Fragment1 extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
     }
+
 }

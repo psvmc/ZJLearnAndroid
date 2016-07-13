@@ -1,4 +1,4 @@
-package cn.psvmc.zjlearnandroid.RecycleViewDemo;
+package cn.psvmc.zjlearnandroid.DemoRecycleView;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,4 +1,4 @@
-package cn.psvmc.zjlearnandroid.RecycleViewDemo;
+package cn.psvmc.zjlearnandroid.DemoRecycleView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,36 +32,6 @@ public class ShareListAdapter extends RecyclerView.Adapter<ShareListAdapter.Item
         return mDatas.size();
     }
 
-    @SuppressLint("NewApi")
-    @Override
-    public void onBindViewHolder(final ItemViewHolder itemViewHolder, final int i) {
-        itemViewHolder.mTextView.setText(mDatas.get(i).getName());
-        if(mOnItemClickListener != null) {
-            /**
-             * 这里加了判断，itemViewHolder.itemView.hasOnClickListeners()
-             * 目的是减少对象的创建，如果已经为view设置了click监听事件,就不用重复设置了
-             * 不然每次调用onBindViewHolder方法，都会创建两个监听事件对象，增加了内存的开销
-             */
-            if(!itemViewHolder.itemView.hasOnClickListeners()) {
-                itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int pos = itemViewHolder.getPosition();
-                        mOnItemClickListener.onItemClick(v, pos);
-                    }
-                });
-                itemViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        int pos = itemViewHolder.getPosition();
-                        mOnItemClickListener.onItemLongClick(v, pos);
-                        return true;
-                    }
-                });
-            }
-        }
-    }
-
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         /**
@@ -73,19 +43,42 @@ public class ShareListAdapter extends RecyclerView.Adapter<ShareListAdapter.Item
         return holder;
     }
 
+    @SuppressLint("NewApi")
+    @Override
+    public void onBindViewHolder(final ItemViewHolder itemViewHolder, final int pos) {
+        itemViewHolder.mTextView.setText(mDatas.get(pos).getName());
+        itemViewHolder.tip.setText(mDatas.get(pos).getTip());
+        if(mOnItemClickListener != null) {
+            itemViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(v, pos);
+                }
+            });
+            itemViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mOnItemClickListener.onItemLongClick(v, pos);
+                    return true;
+                }
+            });
+        }
+    }
+
+
     /**
      * 向指定位置添加元素
      * @param position
      * @param value
      */
-    public void add(int position, String value) {
+    public void add(int position, String value,String tip) {
         if(position > mDatas.size()) {
             position = mDatas.size();
         }
         if(position < 0) {
             position = 0;
         }
-        mDatas.add(position, new ListItemModel(""+position,value));
+        mDatas.add(position, new ListItemModel(""+position,value,tip));
         /**
          * 使用notifyItemInserted/notifyItemRemoved会有动画效果
          * 而使用notifyDataSetChanged()则没有
@@ -123,10 +116,12 @@ public class ShareListAdapter extends RecyclerView.Adapter<ShareListAdapter.Item
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTextView;
+        private TextView tip;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.textview);
+            tip = (TextView) itemView.findViewById(R.id.tip);
         }
     }
 

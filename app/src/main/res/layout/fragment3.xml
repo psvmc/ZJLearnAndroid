@@ -1,14 +1,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/fragment3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="应用"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <include layout="@layout/zj_statusbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/zj_blue"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <RelativeLayout
+            android:id="@+id/back_layout"
+            android:layout_width="44dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_back_normal"
+                android:visibility="visible"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="应用"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+
+        <ImageButton
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:background="@color/clearColor"/>
+    </LinearLayout>
 
 </LinearLayout>
