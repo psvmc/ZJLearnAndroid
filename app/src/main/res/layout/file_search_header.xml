@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="28dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        android:background="@color/zj_white"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:background="@color/zj_white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/zj_search"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/search_text"
+                android:layout_width="36dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:textColor="@color/zj_gay_middle"
+                android:textSize="14sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:hint="搜索"
+                android:layout_marginLeft="8dp"
+                android:background="@color/clearColor"/>
+            <RelativeLayout
+                android:id="@+id/search_close_layout"
+                android:layout_width="20dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/search_close"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/zj_search_close"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="invisible"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_width="48dp"
+        android:layout_height="26dp"
+        app:cardCornerRadius="4dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        app:cardElevation="0dp">
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/zj_blue"
+            android:text="搜索"
+            android:textSize="12sp"
+            android:textColor="@color/zj_white"/>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

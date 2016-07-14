@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/recycler_item_bg"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <TextView
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center_vertical"
+        android:id="@+id/textview"
+        android:textSize="16sp"
+        android:textColor="@color/zj_gay"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="测试"/>
+    <TextView
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:gravity="center_vertical"
+        android:id="@+id/tip"
+        android:textSize="12sp"
+        android:textColor="@color/zj_gay_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试"/>
+</LinearLayout>

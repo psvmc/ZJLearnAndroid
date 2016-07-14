@@ -74,7 +74,7 @@ public class Tabbar2Activity extends AppCompatActivity {
      * 给Tab按钮设置图标和文字
      */
     private View getTabItemView(int index){
-        View view = layoutInflater.inflate(R.layout.tab_item_view, null);
+        View view = layoutInflater.inflate(R.layout.tabbar_item, null);
 
         ImageView imageView = (ImageView) view.findViewById(R.id.imageview);
         imageView.setImageResource(tabInfoList.get(index).resId);

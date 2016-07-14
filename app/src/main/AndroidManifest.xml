@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainRecycleView.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,6 +20,16 @@
         <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity">
         </activity>
         <activity android:name=".DemoTabbar2.C.Tabbar2Activity">
+        </activity>
+        <activity android:name=".DemoRecycleViewWithHeaderAndFooter.C.FileListActivity">
+        </activity>
+        <activity android:name=".DemoSysDialog.SysDialogActivity">
+        </activity>
+        <activity android:name=".DemoPopupWindow.ZJPopWindowActivity">
+        </activity>
+        <activity android:name=".DemoDialog.ZJDialogActivity">
+        </activity>
+        <activity android:name=".DemoToolbar.ToolbarActivity">
         </activity>
     </application>
 

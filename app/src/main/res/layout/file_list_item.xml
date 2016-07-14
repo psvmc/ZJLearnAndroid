@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+
+    <LinearLayout
+        android:id="@+id/file_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:id="@+id/file_item_top"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:background="@drawable/recycler_item_bg"
+            android:clickable="true"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:clickable="false">
+                <LinearLayout
+                    android:id="@+id/file_item_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/leftImageView"
+                        android:layout_width="46dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_parttern_icon_folder"
+                        android:layout_marginLeft="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/file_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="26dp"
+                            android:textSize="16sp"
+                            android:text="我的文件夹"
+                            android:textColor="@color/zj_gay"
+                            />
+
+                        <TextView
+                            android:id="@+id/file_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:textSize="12sp"
+                            android:text="2016-10-10 10:20"
+                            android:textColor="@color/zj_gay_light"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/file_item_fold"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/file_item_fold_image"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/cell_item_unfold"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/file_item_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@color/zj_gay_background"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            >
+
+            <RelativeLayout
+                android:id="@+id/file_share"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/file_share_image"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/file_operation_share"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/file_share_image"
+                    android:textColor="@color/zj_gay"
+                    android:textSize="12sp"
+                    android:text="分享"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/file_move"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/file_move_image"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/file_operation_move"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/file_move_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/zj_gay"
+                    android:textSize="12sp"
+                    android:text="移动"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/file_star"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/file_star_image"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/file_operation_star"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="6dp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/file_star_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/zj_gay"
+                    android:textSize="12sp"
+                    android:text="收藏"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/file_more"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:id="@+id/file_more_image"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/file_operation_more"
+                    android:layout_marginTop="6dp"
+                    />
+
+                <TextView
+                    android:layout_below="@id/file_more_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/zj_gay"
+                    android:textSize="12sp"
+                    android:text="更多"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="zj_gay">#555555</color>
-    <color name="zj_gay_light">#cccccc</color>
-    <item name="gray_background" type="color" >#f3f3f3</item>
-    <item name="clearColor" type="color" >#00000000</item>
-    <item name="zj_blue" type="color" >#4a9de5</item>
+    <color name="zj_gay_light">#dddddd</color>
+    <color name="zj_gay_background" >#f3f3f3</color>
+    <color name="clearColor" >#00000000</color>
+    <color name="zj_blue" >#4a9de5</color>
+    <color name="zj_gay_middle">#888888</color>
+    <color name="zj_white">#ffffffff</color>
+    <color name="zj_red_light" >#ffff6666</color>
 </resources>
