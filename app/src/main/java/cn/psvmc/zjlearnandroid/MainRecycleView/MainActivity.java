@@ -13,13 +13,17 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.psvmc.zjlearnandroid.DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity;
+import cn.psvmc.zjlearnandroid.DemoDrawerLayout.ZJDrawerLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoSysDialog.SysDialogActivity;
 import cn.psvmc.zjlearnandroid.DemoDialog.ZJDialogActivity;
 import cn.psvmc.zjlearnandroid.DemoFloatingActionButton.FloatingActionButtonActivity;
 import cn.psvmc.zjlearnandroid.DemoPopupWindow.ZJPopWindowActivity;
 import cn.psvmc.zjlearnandroid.DemoRecycleViewWithHeaderAndFooter.C.FileListActivity;
+import cn.psvmc.zjlearnandroid.DemoTabLayout.Activity.TabLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoTabbar.C.TabbarActivity;
 import cn.psvmc.zjlearnandroid.DemoTabbar2.C.Tabbar2Activity;
+import cn.psvmc.zjlearnandroid.DemoTextInputLayout.ZJTextInputLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoToolbar.ToolbarActivity;
 import cn.psvmc.zjlearnandroid.MainRecycleView.Model.ListItemModel;
 import cn.psvmc.zjlearnandroid.R;
@@ -78,9 +82,33 @@ public class MainActivity extends AppCompatActivity {
         ));
 
         mDatas.add(new ListItemModel(
-                "Toolbar",
-                "Toolbar",
-                "使用Toolbar"
+                "Toolbar_Snackbar",
+                "Toolbar和Snackbar",
+                "使用Toolbar和Snackbar"
+        ));
+
+        mDatas.add(new ListItemModel(
+                "TabLayout",
+                "TabLayout",
+                "Tab页"
+        ));
+
+        mDatas.add(new ListItemModel(
+                "DrawerLayout",
+                "DrawerLayout",
+                "侧滑菜单 \n使用了NavigationView"
+        ));
+
+        mDatas.add(new ListItemModel(
+                "TextInputLayout",
+                "TextInputLayout",
+                "输入提示"
+        ));
+
+        mDatas.add(new ListItemModel(
+                "CollapsingToolbarLayout",
+                "CollapsingToolbarLayout",
+                "响应式Toobar效果 \nAppBarLayout + CollapsingToolbarLayout + Toolbar"
         ));
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mListAdapter = new MainListAdapter(this, mDatas);
@@ -110,8 +138,16 @@ public class MainActivity extends AppCompatActivity {
                     myIntent.setClass(context, ZJPopWindowActivity.class);
                 } else if (tag.equals("Dialog")) {
                     myIntent.setClass(context, ZJDialogActivity.class);
-                } else if (tag.equals("Toolbar")) {
+                } else if (tag.equals("Toolbar_Snackbar")) {
                     myIntent.setClass(context, ToolbarActivity.class);
+                } else if (tag.equals("TabLayout")) {
+                    myIntent.setClass(context, TabLayoutActivity.class);
+                } else if (tag.equals("DrawerLayout")) {
+                    myIntent.setClass(context, ZJDrawerLayoutActivity.class);
+                } else if (tag.equals("TextInputLayout")) {
+                    myIntent.setClass(context, ZJTextInputLayoutActivity.class);
+                } else if (tag.equals("CollapsingToolbarLayout")) {
+                    myIntent.setClass(context, ZJCollapsingToolbarLayoutActivity.class);
                 }
 
                 startActivity(myIntent);

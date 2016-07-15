@@ -20,4 +20,31 @@
         app:titleTextColor="@color/zj_white">
 
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/snackbarButton1"
+            android:layout_width="200dp"
+            android:layout_height="46dp"
+            android:layout_margin="8dp"
+            android:background="@color/zj_blue"
+            android:text="Snackbar"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/zj_white"/>
+
+        <Button
+            android:id="@+id/snackbarButton2"
+            android:layout_width="200dp"
+            android:layout_height="46dp"
+            android:layout_margin="8dp"
+            android:background="@color/zj_red_light"
+            android:text="Snackbar带按钮"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/zj_white"/>
+    </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,5 @@
     android:toXDelta="100%p"
     android:fromYDelta="0"
     android:toYDelta="0"
-    android:duration="400"
-    >
+    android:duration="280">
 </translate>

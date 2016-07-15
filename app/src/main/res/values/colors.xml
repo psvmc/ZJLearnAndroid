@@ -5,7 +5,10 @@
     <color name="zj_gay_background" >#f3f3f3</color>
     <color name="clearColor" >#00000000</color>
     <color name="zj_blue" >#4a9de5</color>
+    <color name="zj_blue_transparent" >#994a9de5</color>
     <color name="zj_gay_middle">#888888</color>
     <color name="zj_white">#ffffffff</color>
     <color name="zj_red_light" >#ffff6666</color>
+    <color name="zj_red_light_transparent" >#99ff6666</color>
+    <color name="zj_black_transparent" >#66000000</color>
 </resources>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context="cn.psvmc.zjlearnandroid.DemoDrawerLayout.ZJDrawerLayoutActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99666666">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include layout="@layout/zj_statusbar"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/zj_blue"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <RelativeLayout
+                    android:id="@+id/back_layout"
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_back_normal"
+                        android:visibility="visible"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/titleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="RecycleView"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"/>
+
+                <ImageButton
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/clearColor"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/show_left_menu"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/zj_white"
+                    android:background="@color/zj_blue"
+                    android:text="显示左侧菜单"/>
+                <Button
+                    android:id="@+id/show_right_menu"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/zj_white"
+                    android:background="@color/zj_red_light"
+                    android:text="显示右侧菜单"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="我是内容"
+                android:textColor="@color/zj_white"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/left_drawer"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/left_menu_header"
+        app:menu="@menu/left_menu"
+        android:tag="LEFT"/>
+
+    <LinearLayout
+        android:id="@+id/right_drawer"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:background="@color/zj_red_light_transparent"
+        android:orientation="vertical"
+        android:layout_gravity="right"
+        android:tag="RIGHT">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lines="1"
+            android:layout_marginTop="25dp"
+            android:text="我是右侧菜单"
+            android:textColor="@color/zj_white"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

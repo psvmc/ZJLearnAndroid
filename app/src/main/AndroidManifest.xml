@@ -31,6 +31,16 @@
         </activity>
         <activity android:name=".DemoToolbar.ToolbarActivity">
         </activity>
+        <activity android:name=".DemoTabLayout.Activity.TabLayoutActivity">
+        </activity>
+        <activity android:name=".DemoDrawerLayout.Activity.ZJDrawerLayout">
+        </activity>
+        <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity">
+        </activity>
+        <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity">
+        </activity>
+        <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity">
+        </activity>
     </application>
 
 </manifest>

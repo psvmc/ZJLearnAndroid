@@ -1,22 +1,58 @@
 package cn.psvmc.zjlearnandroid.DemoToolbar;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import cn.psvmc.zjlearnandroid.R;
 
 public class ToolbarActivity extends AppCompatActivity {
     String TAG = "ToolbarActivity";
 
+    Button snackbarButton1;
+    Button snackbarButton2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toolbar);
         initToolbar();
+        initSnackButton();
+    }
+
+    private void initSnackButton(){
+        snackbarButton1 = (Button)findViewById(R.id.snackbarButton1);
+        snackbarButton2 = (Button)findViewById(R.id.snackbarButton2);
+
+        snackbarButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(getWindow().getDecorView(), "显示完就消失", Snackbar.LENGTH_SHORT).show();
+            }
+        });
+
+        snackbarButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Snackbar snackbar = Snackbar.make(getWindow().getDecorView(),"点击按钮也会消失",Snackbar.LENGTH_LONG);
+
+                snackbar.getView().setBackgroundColor(getResources().getColor(R.color.zj_blue));
+                snackbar.setActionTextColor(getResources().getColor(R.color.zj_white));
+                snackbar.setAction("消失",new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        snackbar.dismiss();
+                    }
+                });
+                snackbar.show();
+            }
+        });
     }
 
     private void initToolbar() {
