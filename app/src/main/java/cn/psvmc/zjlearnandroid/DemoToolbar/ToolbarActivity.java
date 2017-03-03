@@ -3,6 +3,7 @@ package cn.psvmc.zjlearnandroid.DemoToolbar;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -58,7 +59,7 @@ public class ToolbarActivity extends AppCompatActivity {
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //必须写在setSupportActionBar(toolbar)的前面
-        toolbar.setTitle("Toolbar使用");
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         //这是自定义返回按钮的图标
         //toolbar.setNavigationIcon(R.drawable.zj_toobar_back);

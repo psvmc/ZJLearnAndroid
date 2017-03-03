@@ -15,9 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/zj_blue"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:popupTheme="@style/ZJToolbarPopupTheme"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/zj_white">
+        <TextView
+            android:id="@+id/titeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:text="Toolbar使用"/>
 
     </android.support.v7.widget.Toolbar>
 

@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("RecyclerView的使用");
         mDatas.remove(mDatas);
+
+        mDatas.add(new ListItemModel(
+                "Toolbar_Snackbar",
+                "Toolbar和Snackbar",
+                "使用Toolbar和Snackbar"
+        ));
+
         mDatas.add(new ListItemModel(
                 "tabbar01",
                 "Tabbar方式一",
@@ -81,11 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 "自定义弹出层(Dialog实现)"
         ));
 
-        mDatas.add(new ListItemModel(
-                "Toolbar_Snackbar",
-                "Toolbar和Snackbar",
-                "使用Toolbar和Snackbar"
-        ));
 
         mDatas.add(new ListItemModel(
                 "TabLayout",

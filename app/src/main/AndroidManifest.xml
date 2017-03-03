@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="cn.psvmc.zjlearnandroid"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.psvmc.zjlearnandroid">
 
     <application
         android:allowBackup="true"
@@ -10,37 +10,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainRecycleView.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DemoTabbar.C.TabbarActivity">
-        </activity>
-        <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity">
-        </activity>
-        <activity android:name=".DemoTabbar2.C.Tabbar2Activity">
-        </activity>
-        <activity android:name=".DemoRecycleViewWithHeaderAndFooter.C.FileListActivity">
-        </activity>
-        <activity android:name=".DemoSysDialog.SysDialogActivity">
-        </activity>
-        <activity android:name=".DemoPopupWindow.ZJPopWindowActivity">
-        </activity>
-        <activity android:name=".DemoDialog.ZJDialogActivity">
-        </activity>
-        <activity android:name=".DemoToolbar.ToolbarActivity">
-        </activity>
-        <activity android:name=".DemoTabLayout.Activity.TabLayoutActivity">
-        </activity>
-        <activity android:name=".DemoDrawerLayout.Activity.ZJDrawerLayout">
-        </activity>
-        <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity">
-        </activity>
-        <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity">
-        </activity>
-        <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity">
-        </activity>
+        <activity android:name=".DemoTabbar.C.TabbarActivity"></activity>
+        <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity"></activity>
+        <activity android:name=".DemoTabbar2.C.Tabbar2Activity"></activity>
+        <activity android:name=".DemoRecycleViewWithHeaderAndFooter.C.FileListActivity"></activity>
+        <activity android:name=".DemoSysDialog.SysDialogActivity"></activity>
+        <activity android:name=".DemoPopupWindow.ZJPopWindowActivity"></activity>
+        <activity android:name=".DemoDialog.ZJDialogActivity"></activity>
+        <activity android:name=".DemoToolbar.ToolbarActivity"></activity>
+        <activity android:name=".DemoTabLayout.Activity.TabLayoutActivity"></activity>
+
+        <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity"></activity>
+        <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity"></activity>
+        <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity"></activity>
     </application>
 
 </manifest>
