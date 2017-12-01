@@ -11,22 +11,23 @@
         <activity android:name=".MainRecycleView.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DemoTabbar.C.TabbarActivity"></activity>
-        <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity"></activity>
-        <activity android:name=".DemoTabbar2.C.Tabbar2Activity"></activity>
-        <activity android:name=".DemoRecycleViewWithHeaderAndFooter.C.FileListActivity"></activity>
-        <activity android:name=".DemoSysDialog.SysDialogActivity"></activity>
-        <activity android:name=".DemoPopupWindow.ZJPopWindowActivity"></activity>
-        <activity android:name=".DemoDialog.ZJDialogActivity"></activity>
-        <activity android:name=".DemoToolbar.ToolbarActivity"></activity>
-        <activity android:name=".DemoTabLayout.Activity.TabLayoutActivity"></activity>
-
-        <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity"></activity>
-        <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity"></activity>
-        <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity"></activity>
+        <activity android:name=".DemoTabbar.C.TabbarActivity" />
+        <activity android:name=".DemoFloatingActionButton.FloatingActionButtonActivity" />
+        <activity android:name=".DemoTabbar2.C.Tabbar2Activity" />
+        <activity android:name=".DemoRecycleViewWithHeaderAndFooter.C.FileListActivity" />
+        <activity android:name=".DemoSysDialog.SysDialogActivity" />
+        <activity android:name=".DemoPopupWindow.ZJPopWindowActivity" />
+        <activity android:name=".DemoDialog.ZJDialogActivity" />
+        <activity android:name=".DemoToolbar.ToolbarActivity" />
+        <activity android:name=".DemoTabLayout.Activity.TabLayoutActivity" />
+        <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity" />
+        <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity" />
+        <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity" />
+        <activity android:name=".DemoChat.C.ChatActivity"></activity>
     </application>
 
 </manifest>

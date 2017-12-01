@@ -13,6 +13,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.psvmc.zjlearnandroid.DemoChat.C.ChatActivity;
 import cn.psvmc.zjlearnandroid.DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoDrawerLayout.ZJDrawerLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoSysDialog.SysDialogActivity;
@@ -112,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
                 "CollapsingToolbarLayout",
                 "响应式Toobar效果 \nAppBarLayout + CollapsingToolbarLayout + Toolbar"
         ));
+
+        mDatas.add(new ListItemModel(
+                "Chat",
+                "Chat",
+                "Chat"
+        ));
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mListAdapter = new MainListAdapter(this, mDatas);
         mRecyclerView.setAdapter(mListAdapter);
@@ -150,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
                     myIntent.setClass(context, ZJTextInputLayoutActivity.class);
                 } else if (tag.equals("CollapsingToolbarLayout")) {
                     myIntent.setClass(context, ZJCollapsingToolbarLayoutActivity.class);
+                } else if (tag.equals("Chat")) {
+                    myIntent.setClass(context, ChatActivity.class);
                 }
 
                 startActivity(myIntent);
