@@ -1,8 +1,11 @@
 package cn.psvmc.zjlearnandroid.DemoUserbook;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -16,49 +19,55 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import android.view.ViewGroup;
 import android.widget.TextView;
-
-import cn.psvmc.zjlearnandroid.R;
 
 
 /**
  * 字母索引条
  *
- * @author Administrator
+ * @author psvmc
  */
 public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImageButton {
-    String TAG = "QuickAlphabeticBar";
+    //String TAG = "QuickAlphabeticBar";
     private TextView mDialogText; // 中间显示字母的文本框
     private Handler mHandler; // 处理UI的句柄
     private RecyclerView recyclerView; // 列表
-    private float mHight; // 高度
+
+    Context mContext;
     // 字母列表索引
     private String[] letters = new String[]{"#", "A", "B", "C", "D", "E",
             "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
             "S", "T", "U", "V", "W", "X", "Y", "Z"};
     // 字母索引哈希表
-    private HashMap<String, Integer> alphaIndexer;
+    private HashMap<String, Integer> sectionIndex;
     Paint paint = new Paint();
     boolean showBkg = false;
     int choose = -1;
 
     public QuickAlphabeticBar(Context context) {
         super(context);
+        mContext = context;
     }
 
     public QuickAlphabeticBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mContext = context;
     }
 
     public QuickAlphabeticBar(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
     }
 
     // 初始化
-    public void init(Activity ctx) {
-        mDialogText = (TextView) ctx.findViewById(R.id.fast_position);
-        mDialogText.setVisibility(View.INVISIBLE);
+    public void init() {
         mHandler = new Handler();
+    }
+
+    public void setDialogText(TextView mDialogText) {
+        this.mDialogText = mDialogText;
+        mDialogText.setVisibility(View.INVISIBLE);
     }
 
     // 设置需要索引的列表
@@ -67,8 +76,16 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
     }
 
     // 设置字母索引哈希表
-    public void setAlphaIndexer(HashMap<String, Integer> alphaIndexer) {
-        this.alphaIndexer = alphaIndexer;
+    public void setSectionIndex(HashMap<String, Integer> sectionIndex) {
+        this.sectionIndex = sectionIndex;
+        Set<String> keys = sectionIndex.keySet();
+        List<String> keyList = new ArrayList<String>();
+        keyList.addAll(keys);
+        Collections.sort(keyList);
+        letters = new String[keyList.size()];
+        for (int i = 0; i < keyList.size(); i++) {
+            letters[i] = keyList.get(i);
+        }
     }
 
     @Override
@@ -82,9 +99,9 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
         if (selectIndex > -1 && selectIndex < letters.length) { // 防止越界
             String key = letters[selectIndex];
             mDialogText.setText(key);
-            if (null != alphaIndexer) {
-                if (alphaIndexer.containsKey(key)) {
-                    int pos = alphaIndexer.get(key);
+            if (null != sectionIndex) {
+                if (sectionIndex.containsKey(key)) {
+                    int pos = sectionIndex.get(key);
                     moveToPosition(recyclerView, pos);
                 }
             }
@@ -112,7 +129,7 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (oldChoose != selectIndex) {
-                    if (selectIndex > 0 && selectIndex < letters.length) {
+                    if (selectIndex >= 0 && selectIndex < letters.length) {
                         choose = selectIndex;
                         invalidate();
                     }
@@ -139,6 +156,7 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
         }
         return super.onTouchEvent(event);
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -186,6 +204,40 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
             // 再通过onScrollStateChanged控制再次调用smoothMoveToPosition，执行上一个判断中的方法
             mRecyclerView.scrollToPosition(position);
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        // 获取宽-测量规则的模式和大小
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        // 获取高-测量规则的模式和大小
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        // 设置wrap_content的默认宽 / 高值
+        // 默认宽/高的设定并无固定依据,根据需要灵活设置
+        // 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看
+        int sigleHeight = dip2px(mContext, 20);
+        int mWidth = sigleHeight;
+        int mHeight = sigleHeight * letters.length;
+
+        // 当布局参数设置为wrap_content时，设置默认值
+        if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT && getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+            setMeasuredDimension(mWidth, mHeight);
+            // 宽 / 高任意一个布局参数为= wrap_content时，都设置默认值
+        } else if (getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
+            setMeasuredDimension(mWidth, heightSize);
+        } else if (getLayoutParams().height == ViewGroup.LayoutParams.WRAP_CONTENT) {
+            setMeasuredDimension(widthSize, mHeight);
+        }
+    }
+
+    public static int dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
 }

@@ -55,29 +55,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
+
         <TextView
-            android:id="@+id/fast_position"
+            android:id="@+id/dialogTextView"
             android:layout_width="70dip"
             android:layout_height="70dip"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal|top"
             android:layout_margin="34dip"
-            android:background="@color/zj_black_transparent"
+            android:background="@drawable/yuan_bg_gray"
             android:gravity="center"
             android:padding="2dip"
             android:textColor="#ffffff"
             android:textSize="48dip"
             android:visibility="visible"
-            android:text="X"/>
+            android:text=""/>
 
         <cn.psvmc.zjlearnandroid.DemoUserbook.QuickAlphabeticBar
             android:id="@+id/fast_scroller"
-            android:layout_width="22dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="top|right|center"
+            android:layout_centerVertical="true"
             android:layout_marginTop="0dip"
-            android:background="@color/zj_gay_background_trans"
+            android:background="@color/clearColor"
             android:scaleType="centerInside" />
 
     </RelativeLayout>

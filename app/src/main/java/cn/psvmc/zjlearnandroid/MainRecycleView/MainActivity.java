@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         mDatas.remove(mDatas);
 
         mDatas.add(new ListItemModel(
+                "Userbook",
+                "通讯录",
+                "类似微信通讯录"
+        ));
+        
+        mDatas.add(new ListItemModel(
                 "Toolbar_Snackbar",
                 "Toolbar和Snackbar",
                 "使用Toolbar和Snackbar"
@@ -121,11 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 "聊天页面的简单实现"
         ));
 
-        mDatas.add(new ListItemModel(
-                "Userbook",
-                "Userbook",
-                "类似微信通讯录"
-        ));
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mListAdapter = new MainListAdapter(this, mDatas);
         mRecyclerView.setAdapter(mListAdapter);

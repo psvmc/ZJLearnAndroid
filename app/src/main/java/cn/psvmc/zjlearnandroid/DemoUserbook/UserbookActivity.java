@@ -2,7 +2,6 @@ package cn.psvmc.zjlearnandroid.DemoUserbook;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,27 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.psvmc.zjlearnandroid.DemoChat.C.ChatActivity;
-import cn.psvmc.zjlearnandroid.DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity;
-import cn.psvmc.zjlearnandroid.DemoDialog.ZJDialogActivity;
-import cn.psvmc.zjlearnandroid.DemoDrawerLayout.ZJDrawerLayoutActivity;
-import cn.psvmc.zjlearnandroid.DemoFloatingActionButton.FloatingActionButtonActivity;
-import cn.psvmc.zjlearnandroid.DemoPopupWindow.ZJPopWindowActivity;
-import cn.psvmc.zjlearnandroid.DemoRecycleViewWithHeaderAndFooter.C.FileListActivity;
-import cn.psvmc.zjlearnandroid.DemoSysDialog.SysDialogActivity;
-import cn.psvmc.zjlearnandroid.DemoTabLayout.Activity.TabLayoutActivity;
-import cn.psvmc.zjlearnandroid.DemoTabbar.C.TabbarActivity;
-import cn.psvmc.zjlearnandroid.DemoTabbar2.C.Tabbar2Activity;
-import cn.psvmc.zjlearnandroid.DemoTextInputLayout.ZJTextInputLayoutActivity;
-import cn.psvmc.zjlearnandroid.DemoToolbar.ToolbarActivity;
-import cn.psvmc.zjlearnandroid.MainRecycleView.MainListAdapter;
-import cn.psvmc.zjlearnandroid.MainRecycleView.Model.ListItemModel;
 import cn.psvmc.zjlearnandroid.MainRecycleView.RecycleViewDivider;
 import cn.psvmc.zjlearnandroid.R;
 
@@ -48,6 +33,7 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
     private List<UserbookItemModel> mDatas = new ArrayList<>();
 
     private QuickAlphabeticBar quickAlphabeticBar;
+    private TextView mDialogText;
 
 
     @Override
@@ -101,24 +87,17 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
 
     private void initQuickBar() {
         quickAlphabeticBar = (QuickAlphabeticBar) findViewById(R.id.fast_scroller);
-        quickAlphabeticBar.init(activity);
+        mDialogText = (TextView) findViewById(R.id.dialogTextView);
+        quickAlphabeticBar.init();
+        quickAlphabeticBar.setDialogText(mDialogText);
         quickAlphabeticBar.setListView(mRecyclerView);
-    }
-
-    private void reloadQuickBar() {
-        HashMap<String, Integer> alphaIndexer = new HashMap<>();
-        alphaIndexer.put("#",0);
-        for (int i = 0; i < mDatas.size(); i++) {
-            String firstChar = mDatas.get(i).getFirstChar();
-            if (alphaIndexer.get(firstChar) == null) {
-                alphaIndexer.put(firstChar,i+1);
-            }
-        }
-        quickAlphabeticBar.setAlphaIndexer(alphaIndexer);
     }
 
     private void reloadData() {
         mDatas.remove(mDatas);
+        mDatas.add(new UserbookItemModel("阿里巴巴", "", "A"));
+        mDatas.add(new UserbookItemModel("百度", "", "B"));
+        mDatas.add(new UserbookItemModel("淘宝", "", "T"));
         mDatas.add(new UserbookItemModel("张剑", "", "Z"));
         mDatas.add(new UserbookItemModel("李四", "", "L"));
         mDatas.add(new UserbookItemModel("王麻子", "", "W"));
@@ -132,6 +111,21 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
 
         Collections.sort(mDatas);
         mListAdapter.notifyDataSetChanged();
+    }
+
+    private void reloadQuickBar() {
+        HashMap<String, Integer> sectionIndex = new HashMap<>();
+        sectionIndex.put("#", 0);
+
+        for (int i = 0; i < mDatas.size(); i++) {
+            String firstChar = mDatas.get(i).getFirstChar();
+            if (sectionIndex.get(firstChar) == null) {
+                sectionIndex.put(firstChar, i + 1);
+            }
+        }
+
+        quickAlphabeticBar.setSectionIndex(sectionIndex);
+
     }
 
     @Override
