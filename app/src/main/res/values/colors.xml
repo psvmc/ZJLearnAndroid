@@ -3,6 +3,7 @@
     <color name="zj_gay">#555555</color>
     <color name="zj_gay_light">#dddddd</color>
     <color name="zj_gay_background" >#f3f3f3</color>
+    <color name="zj_gay_background_trans" >#aaf3f3f3</color>
     <color name="clearColor" >#00000000</color>
     <color name="zj_blue" >#4a9de5</color>
     <color name="zj_blue_transparent" >#994a9de5</color>

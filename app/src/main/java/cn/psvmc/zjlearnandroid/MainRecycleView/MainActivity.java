@@ -26,6 +26,7 @@ import cn.psvmc.zjlearnandroid.DemoTabbar.C.TabbarActivity;
 import cn.psvmc.zjlearnandroid.DemoTabbar2.C.Tabbar2Activity;
 import cn.psvmc.zjlearnandroid.DemoTextInputLayout.ZJTextInputLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoToolbar.ToolbarActivity;
+import cn.psvmc.zjlearnandroid.DemoUserbook.UserbookActivity;
 import cn.psvmc.zjlearnandroid.MainRecycleView.Model.ListItemModel;
 import cn.psvmc.zjlearnandroid.R;
 
@@ -117,7 +118,13 @@ public class MainActivity extends AppCompatActivity {
         mDatas.add(new ListItemModel(
                 "Chat",
                 "Chat",
-                "Chat"
+                "聊天页面的简单实现"
+        ));
+
+        mDatas.add(new ListItemModel(
+                "Userbook",
+                "Userbook",
+                "类似微信通讯录"
         ));
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mListAdapter = new MainListAdapter(this, mDatas);
@@ -159,6 +166,8 @@ public class MainActivity extends AppCompatActivity {
                     myIntent.setClass(context, ZJCollapsingToolbarLayoutActivity.class);
                 } else if (tag.equals("Chat")) {
                     myIntent.setClass(context, ChatActivity.class);
+                } else if (tag.equals("Userbook")) {
+                    myIntent.setClass(context, UserbookActivity.class);
                 }
 
                 startActivity(myIntent);

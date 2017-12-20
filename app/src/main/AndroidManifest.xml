@@ -27,7 +27,8 @@
         <activity android:name=".DemoDrawerLayout.ZJDrawerLayoutActivity" />
         <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity" />
         <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity" />
-        <activity android:name=".DemoChat.C.ChatActivity"></activity>
+        <activity android:name=".DemoChat.C.ChatActivity" />
+        <activity android:name=".DemoUserbook.UserbookActivity"></activity>
     </application>
 
 </manifest>
