@@ -8,3 +8,5 @@ Android常用组件学习
 + DrawerLayout侧滑菜单
 + TabLayout标签页
 + CollapsingToolbarLayout实现的响应式头部
++ 简易的聊天界面
++ 类似微信的通讯录界面
