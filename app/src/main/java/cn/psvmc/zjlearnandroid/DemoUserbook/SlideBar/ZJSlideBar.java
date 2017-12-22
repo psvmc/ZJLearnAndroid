@@ -53,13 +53,13 @@ public class ZJSlideBar extends android.support.v7.widget.AppCompatImageButton {
         mContext = context;
     }
 
-    public ZJSlideBar(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public ZJSlideBar(Context context, AttributeSet attrs) {
+        super(context, attrs);
         mContext = context;
     }
 
-    public ZJSlideBar(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public ZJSlideBar(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
         mContext = context;
     }
 
