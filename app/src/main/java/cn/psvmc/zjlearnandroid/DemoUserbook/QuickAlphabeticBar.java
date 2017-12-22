@@ -39,7 +39,7 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
 
     Context mContext;
     // 字母列表索引
-    private String[] letters = new String[]{"#", "A", "B", "C", "D", "E",
+    private String[] letters = new String[]{"☆", "A", "B", "C", "D", "E",
             "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
             "S", "T", "U", "V", "W", "X", "Y", "Z"};
     // 字母索引哈希表
@@ -64,38 +64,48 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
     }
 
     /**
-     *  初始化
+     * 初始化
+     *
      * @param recyclerView recyclerView
-     * @param mDialogText mDialogText
-     * @param showAllIndex 收否显示所有的Index
-     * @param fontSize 文字的大小
+     * @param mDialogText  mDialogText
+     * @param fontSize     文字的大小
      */
-    public void init(RecyclerView recyclerView,TextView mDialogText,boolean showAllIndex,int fontSize) {
+    public void init(RecyclerView recyclerView, TextView mDialogText, int fontSize) {
         this.mRecyclerView = recyclerView;
 
         this.mDialogTextView = mDialogText;
         mDialogText.setVisibility(View.INVISIBLE);
 
-        mShowAllIndex = showAllIndex;
         mFontSize = fontSize;
         mHandler = new Handler();
     }
 
 
-    // 设置字母索引哈希表
-    public void setSectionIndex(HashMap<String, Integer> sectionIndex) {
+    /**
+     * 设置字母索引哈希表
+     *
+     * @param sectionIndex 字母索引哈希表
+     * @param sectionList  显示的section
+     */
+    public void setSectionIndex(HashMap<String, Integer> sectionIndex, List<String> sectionList) {
+        this.mShowAllIndex = false;
         this.sectionIndex = sectionIndex;
-        if(!this.mShowAllIndex){
-            Set<String> keys = sectionIndex.keySet();
-            List<String> keyList = new ArrayList<String>();
-            keyList.addAll(keys);
-            Collections.sort(keyList);
-            letters = new String[keyList.size()];
-            for (int i = 0; i < keyList.size(); i++) {
-                letters[i] = keyList.get(i);
+        if (!this.mShowAllIndex && null != sectionList) {
+            letters = new String[sectionList.size()];
+            for (int i = 0; i < sectionList.size(); i++) {
+                letters[i] = sectionList.get(i);
             }
         }
+    }
 
+    /**
+     * 设置字母索引哈希表 字母索引哈希表
+     *
+     * @param sectionIndex
+     */
+    public void setSectionIndex(HashMap<String, Integer> sectionIndex) {
+        this.mShowAllIndex = true;
+        this.sectionIndex = sectionIndex;
     }
 
     @Override
@@ -108,24 +118,24 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
 
         if (selectIndex > -1 && selectIndex < letters.length) { // 防止越界
             String key = letters[selectIndex];
-            if(null != mDialogTextView){
+            if (null != mDialogTextView) {
                 mDialogTextView.setText(key);
-            }else{
+            } else {
                 Log.e(TAG, " 未设置mDialogTextView");
             }
 
             if (null != sectionIndex) {
                 if (sectionIndex.containsKey(key)) {
                     int pos = sectionIndex.get(key);
-                    if(null != mRecyclerView){
+                    if (null != mRecyclerView) {
                         moveToPosition(mRecyclerView, pos);
-                    }else{
+                    } else {
                         Log.e(TAG, " 未设置recyclerView");
                     }
-
                 }
             }
         }
+
         switch (act) {
             case MotionEvent.ACTION_DOWN:
                 showBkg = true;

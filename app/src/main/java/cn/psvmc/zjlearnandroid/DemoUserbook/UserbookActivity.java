@@ -88,7 +88,7 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
     private void initQuickBar() {
         quickAlphabeticBar = (QuickAlphabeticBar) findViewById(R.id.fast_scroller);
         mDialogTextView = (TextView) findViewById(R.id.dialogTextView);
-        quickAlphabeticBar.init(mRecyclerView,mDialogTextView,false,17);
+        quickAlphabeticBar.init(mRecyclerView,mDialogTextView,17);
     }
 
     private void reloadData() {
@@ -113,17 +113,18 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
 
     private void reloadQuickBar() {
         HashMap<String, Integer> sectionIndex = new HashMap<>();
-        sectionIndex.put("#", 0);
-
+        List<String> sectionList = new ArrayList<>();
+        sectionIndex.put("☆", 0);
+        sectionList.add("☆");
         for (int i = 0; i < mDatas.size(); i++) {
             String firstChar = mDatas.get(i).getFirstChar();
             if (sectionIndex.get(firstChar) == null) {
                 sectionIndex.put(firstChar, i + 1);
+                sectionList.add(firstChar);
             }
         }
 
-        quickAlphabeticBar.setSectionIndex(sectionIndex);
-
+        quickAlphabeticBar.setSectionIndex(sectionIndex,sectionList);
     }
 
     @Override
