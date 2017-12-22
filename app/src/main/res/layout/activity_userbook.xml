@@ -71,7 +71,7 @@
             android:visibility="visible"
             android:text=""/>
 
-        <cn.psvmc.zjlearnandroid.DemoUserbook.QuickAlphabeticBar
+        <cn.psvmc.zjlearnandroid.DemoUserbook.SlideBar.ZJSlideBar
             android:id="@+id/fast_scroller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.psvmc.zjlearnandroid.DemoUserbook.SlideBar.ZJSlideBar;
 import cn.psvmc.zjlearnandroid.MainRecycleView.RecycleViewDivider;
 import cn.psvmc.zjlearnandroid.R;
 
@@ -32,7 +33,7 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
     private UserbookListAdapter mListAdapter;
     private List<UserbookItemModel> mDatas = new ArrayList<>();
 
-    private QuickAlphabeticBar quickAlphabeticBar;
+    private ZJSlideBar slideBar;
     private TextView mDialogTextView;
 
 
@@ -86,9 +87,9 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
     }
 
     private void initQuickBar() {
-        quickAlphabeticBar = (QuickAlphabeticBar) findViewById(R.id.fast_scroller);
+        slideBar = (ZJSlideBar) findViewById(R.id.fast_scroller);
         mDialogTextView = (TextView) findViewById(R.id.dialogTextView);
-        quickAlphabeticBar.init(mRecyclerView,mDialogTextView,17);
+        slideBar.init(mRecyclerView,mDialogTextView,12);
     }
 
     private void reloadData() {
@@ -124,7 +125,7 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
             }
         }
 
-        quickAlphabeticBar.setSectionIndex(sectionIndex,sectionList);
+        slideBar.setSectionIndex(sectionIndex,sectionList);
     }
 
     @Override

@@ -44,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxWidth="200dp"
+                    android:textColor="@android:color/white"
                     android:text="XXXXYYYYYYYY我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党我爱中国共产党" />
             </RelativeLayout>
 
