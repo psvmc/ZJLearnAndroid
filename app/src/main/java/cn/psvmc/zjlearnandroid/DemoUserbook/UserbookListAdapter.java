@@ -109,43 +109,6 @@ public class UserbookListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    /**
-     * 向指定位置添加元素
-     *
-     * @param position
-     * @param value
-     */
-    public void add(int position, String value, String tip) {
-        if (position > mDatas.size()) {
-            position = mDatas.size();
-        }
-        if (position < 0) {
-            position = 0;
-        }
-        mDatas.add(position, new UserbookItemModel("" + position, value, tip));
-        /**
-         * 使用notifyItemInserted/notifyItemRemoved会有动画效果
-         * 而使用notifyDataSetChanged()则没有
-         */
-        notifyItemInserted(position);
-    }
-
-    /**
-     * 移除指定位置元素
-     *
-     * @param position
-     * @return
-     */
-    public UserbookItemModel remove(int position) {
-        if (position > mDatas.size() - 1) {
-            return null;
-        }
-        UserbookItemModel value = mDatas.remove(position);
-        notifyItemRemoved(position);
-        return value;
-    }
-
-
     public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;
     }
