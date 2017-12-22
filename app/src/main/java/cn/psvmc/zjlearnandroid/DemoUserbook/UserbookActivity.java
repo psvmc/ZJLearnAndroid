@@ -33,7 +33,7 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
     private List<UserbookItemModel> mDatas = new ArrayList<>();
 
     private QuickAlphabeticBar quickAlphabeticBar;
-    private TextView mDialogText;
+    private TextView mDialogTextView;
 
 
     @Override
@@ -87,10 +87,8 @@ public class UserbookActivity extends AppCompatActivity implements UserbookListA
 
     private void initQuickBar() {
         quickAlphabeticBar = (QuickAlphabeticBar) findViewById(R.id.fast_scroller);
-        mDialogText = (TextView) findViewById(R.id.dialogTextView);
-        quickAlphabeticBar.init();
-        quickAlphabeticBar.setDialogText(mDialogText);
-        quickAlphabeticBar.setListView(mRecyclerView);
+        mDialogTextView = (TextView) findViewById(R.id.dialogTextView);
+        quickAlphabeticBar.init(mRecyclerView,mDialogTextView,false,17);
     }
 
     private void reloadData() {

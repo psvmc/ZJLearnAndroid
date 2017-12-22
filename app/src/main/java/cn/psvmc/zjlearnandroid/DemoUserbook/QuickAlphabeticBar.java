@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -29,10 +30,12 @@ import android.widget.TextView;
  * @author psvmc
  */
 public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImageButton {
-    //String TAG = "QuickAlphabeticBar";
-    private TextView mDialogText; // 中间显示字母的文本框
+    String TAG = "QuickAlphabeticBar";
+    private TextView mDialogTextView; // 中间显示字母的文本框
     private Handler mHandler; // 处理UI的句柄
-    private RecyclerView recyclerView; // 列表
+    private RecyclerView mRecyclerView; // 列表
+    private int mFontSize = 17;
+    boolean mShowAllIndex = false;
 
     Context mContext;
     // 字母列表索引
@@ -60,32 +63,39 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
         mContext = context;
     }
 
-    // 初始化
-    public void init() {
+    /**
+     *  初始化
+     * @param recyclerView recyclerView
+     * @param mDialogText mDialogText
+     * @param showAllIndex 收否显示所有的Index
+     * @param fontSize 文字的大小
+     */
+    public void init(RecyclerView recyclerView,TextView mDialogText,boolean showAllIndex,int fontSize) {
+        this.mRecyclerView = recyclerView;
+
+        this.mDialogTextView = mDialogText;
+        mDialogText.setVisibility(View.INVISIBLE);
+
+        mShowAllIndex = showAllIndex;
+        mFontSize = fontSize;
         mHandler = new Handler();
     }
 
-    public void setDialogText(TextView mDialogText) {
-        this.mDialogText = mDialogText;
-        mDialogText.setVisibility(View.INVISIBLE);
-    }
-
-    // 设置需要索引的列表
-    public void setListView(RecyclerView mList) {
-        this.recyclerView = mList;
-    }
 
     // 设置字母索引哈希表
     public void setSectionIndex(HashMap<String, Integer> sectionIndex) {
         this.sectionIndex = sectionIndex;
-        Set<String> keys = sectionIndex.keySet();
-        List<String> keyList = new ArrayList<String>();
-        keyList.addAll(keys);
-        Collections.sort(keyList);
-        letters = new String[keyList.size()];
-        for (int i = 0; i < keyList.size(); i++) {
-            letters[i] = keyList.get(i);
+        if(!this.mShowAllIndex){
+            Set<String> keys = sectionIndex.keySet();
+            List<String> keyList = new ArrayList<String>();
+            keyList.addAll(keys);
+            Collections.sort(keyList);
+            letters = new String[keyList.size()];
+            for (int i = 0; i < keyList.size(); i++) {
+                letters[i] = keyList.get(i);
+            }
         }
+
     }
 
     @Override
@@ -98,11 +108,21 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
 
         if (selectIndex > -1 && selectIndex < letters.length) { // 防止越界
             String key = letters[selectIndex];
-            mDialogText.setText(key);
+            if(null != mDialogTextView){
+                mDialogTextView.setText(key);
+            }else{
+                Log.e(TAG, " 未设置mDialogTextView");
+            }
+
             if (null != sectionIndex) {
                 if (sectionIndex.containsKey(key)) {
                     int pos = sectionIndex.get(key);
-                    moveToPosition(recyclerView, pos);
+                    if(null != mRecyclerView){
+                        moveToPosition(mRecyclerView, pos);
+                    }else{
+                        Log.e(TAG, " 未设置recyclerView");
+                    }
+
                 }
             }
         }
@@ -120,8 +140,8 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
 
                         @Override
                         public void run() {
-                            if (mDialogText != null && mDialogText.getVisibility() == View.INVISIBLE) {
-                                mDialogText.setVisibility(VISIBLE);
+                            if (mDialogTextView != null && mDialogTextView.getVisibility() == View.INVISIBLE) {
+                                mDialogTextView.setVisibility(VISIBLE);
                             }
                         }
                     });
@@ -143,9 +163,9 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
 
                         @Override
                         public void run() {
-                            if (mDialogText != null
-                                    && mDialogText.getVisibility() == View.VISIBLE) {
-                                mDialogText.setVisibility(INVISIBLE);
+                            if (mDialogTextView != null
+                                    && mDialogTextView.getVisibility() == View.VISIBLE) {
+                                mDialogTextView.setVisibility(INVISIBLE);
                             }
                         }
                     });
@@ -210,17 +230,17 @@ public class QuickAlphabeticBar extends android.support.v7.widget.AppCompatImage
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         // 获取宽-测量规则的模式和大小
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        //int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 
         // 获取高-测量规则的模式和大小
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        //int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
         // 设置wrap_content的默认宽 / 高值
         // 默认宽/高的设定并无固定依据,根据需要灵活设置
         // 类似TextView,ImageView等针对wrap_content均在onMeasure()对设置默认宽 / 高值有特殊处理,具体读者可以自行查看
-        int sigleHeight = dip2px(mContext, 20);
+        int sigleHeight = dip2px(mContext, mFontSize);
         int mWidth = sigleHeight;
         int mHeight = sigleHeight * letters.length;
 
