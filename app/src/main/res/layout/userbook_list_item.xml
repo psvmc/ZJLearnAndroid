@@ -31,9 +31,9 @@
             android:id="@+id/mImageView"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/img11"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:layout_gravity="center_vertical"/>
+            android:src="@drawable/touxiang002" />
 
         <TextView
             android:id="@+id/nameTextView"

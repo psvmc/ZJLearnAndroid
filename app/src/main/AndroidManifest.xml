@@ -28,7 +28,8 @@
         <activity android:name=".DemoTextInputLayout.ZJTextInputLayoutActivity" />
         <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity" />
         <activity android:name=".DemoChat.C.ChatActivity" />
-        <activity android:name=".DemoUserbook.UserbookActivity"></activity>
+        <activity android:name=".DemoUserbook.UserbookActivity" />
+        <activity android:name=".DemoLogin.LoginActivity" android:windowSoftInputMode="adjustResize|stateHidden"></activity>
     </application>
 
 </manifest>

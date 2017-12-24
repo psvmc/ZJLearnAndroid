@@ -16,6 +16,7 @@ import java.util.List;
 import cn.psvmc.zjlearnandroid.DemoChat.C.ChatActivity;
 import cn.psvmc.zjlearnandroid.DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoDrawerLayout.ZJDrawerLayoutActivity;
+import cn.psvmc.zjlearnandroid.DemoLogin.LoginActivity;
 import cn.psvmc.zjlearnandroid.DemoSysDialog.SysDialogActivity;
 import cn.psvmc.zjlearnandroid.DemoDialog.ZJDialogActivity;
 import cn.psvmc.zjlearnandroid.DemoFloatingActionButton.FloatingActionButtonActivity;
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("RecyclerView的使用");
         mDatas.remove(mDatas);
+
+        mDatas.add(new ListItemModel(
+                "Login",
+                "登陆页",
+                "用到了Kotlin和ConstraintLayout"
+        ));
 
         mDatas.add(new ListItemModel(
                 "Userbook",
@@ -170,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
                     myIntent.setClass(context, ChatActivity.class);
                 } else if (tag.equals("Userbook")) {
                     myIntent.setClass(context, UserbookActivity.class);
+                } else if(tag.equals("Login")){
+                    myIntent.setClass(context, LoginActivity.class);
                 }
 
                 startActivity(myIntent);
