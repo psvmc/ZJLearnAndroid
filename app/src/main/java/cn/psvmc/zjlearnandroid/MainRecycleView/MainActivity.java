@@ -27,6 +27,7 @@ import cn.psvmc.zjlearnandroid.DemoTabbar.C.TabbarActivity;
 import cn.psvmc.zjlearnandroid.DemoTabbar2.C.Tabbar2Activity;
 import cn.psvmc.zjlearnandroid.DemoTextInputLayout.ZJTextInputLayoutActivity;
 import cn.psvmc.zjlearnandroid.DemoToolbar.ToolbarActivity;
+import cn.psvmc.zjlearnandroid.DemoTreeView.TreeViewActivity;
 import cn.psvmc.zjlearnandroid.DemoUserbook.UserbookActivity;
 import cn.psvmc.zjlearnandroid.MainRecycleView.Model.ListItemModel;
 import cn.psvmc.zjlearnandroid.R;
@@ -45,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("RecyclerView的使用");
         mDatas.remove(mDatas);
+
+
+        mDatas.add(new ListItemModel(
+                "TreeView",
+                "树状菜单",
+                "用到了Kotlin和RecycleView"
+        ));
 
         mDatas.add(new ListItemModel(
                 "Login",
@@ -179,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
                     myIntent.setClass(context, UserbookActivity.class);
                 } else if(tag.equals("Login")){
                     myIntent.setClass(context, LoginActivity.class);
+                } else if(tag.equals("TreeView")){
+                    myIntent.setClass(context, TreeViewActivity.class);
                 }
 
                 startActivity(myIntent);

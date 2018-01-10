@@ -29,7 +29,10 @@
         <activity android:name=".DemoCollapsingToolbarLayout.ZJCollapsingToolbarLayoutActivity" />
         <activity android:name=".DemoChat.C.ChatActivity" />
         <activity android:name=".DemoUserbook.UserbookActivity" />
-        <activity android:name=".DemoLogin.LoginActivity" android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name=".DemoLogin.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".DemoTreeView.TreeViewActivity"></activity>
     </application>
 
 </manifest>
