@@ -46,7 +46,7 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
         mRecyclerView!!.adapter = mListAdapter
 
         mRecyclerView!!.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        mRecyclerView!!.addItemDecoration(RecycleViewDivider(context, LinearLayoutManager.VERTICAL))
+        //mRecyclerView!!.addItemDecoration(RecycleViewDivider(context, LinearLayoutManager.VERTICAL))
         // 设置item动画
         mRecyclerView!!.itemAnimator = DefaultItemAnimator()
         mListAdapter!!.setOnItemClickListener(this)
@@ -79,20 +79,37 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
                 )
         )
         var model02 = TreeItemModel(2, "数学", 0, null)
-        var model03 = TreeItemModel(3, "英语", 0, null)
-        var model04 = TreeItemModel(4, "物理", 0, null)
-        var model05 = TreeItemModel(5, "化学", 0, null)
+        var model03 = TreeItemModel(3, "英语", 0, arrayListOf<TreeItemModel>(
+                TreeItemModel(36, "第1章", 1,
+                        arrayListOf<TreeItemModel>(
+                                TreeItemModel(20, "第1节", 2, null),
+                                TreeItemModel(21, "第2节", 2, null),
+                                TreeItemModel(22, "第3节", 2, null),
+                                TreeItemModel(23, "第4节", 2, null)
+                        )
+                ),
+                TreeItemModel(37, "第2章", 1,
+                        arrayListOf<TreeItemModel>(
+                                TreeItemModel(24, "第1节", 2, null),
+                                TreeItemModel(25, "第2节", 2, null),
+                                TreeItemModel(26, "第3节", 2, null),
+                                TreeItemModel(27, "第4节", 2, null)
+                        )
+                )
+        )
+        )
+
         mDatas.add(model01)
         mDatas.add(model02)
         mDatas.add(model03)
-        mDatas.add(model04)
-        mDatas.add(model05)
+
         mListAdapter!!.notifyDataSetChanged()
     }
 
     override fun onItemClick(view: View, position: Int) {
         var itemData = this.mDatas.get(position);
-        Log.i(TAG,""+mDatas.size)
+        Log.i(TAG, "position：" + position)
+        Log.i(TAG, "数据的ID：" + itemData.id + " name：" + itemData.name)
         if (itemData.childArr != null) {
             itemData.isexpand = !itemData.isexpand;
             mListAdapter!!.update(position)
@@ -101,8 +118,8 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
             } else {
                 mListAdapter!!.removeSon(position)
             }
-        }else{
-            Log.i(TAG,"子项为空")
+        } else {
+            Log.i(TAG, "子项为空")
         }
 
     }

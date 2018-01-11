@@ -91,6 +91,7 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         }
         mDatas.addAll(position, list);
         notifyItemRangeInserted(position, list.size)
+        notifyItemRangeChanged(position+list.size-1,mDatas.size-position-list.size+1)
     }
 
     fun removeSon(position: Int) {
@@ -114,6 +115,7 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         }
         mDatas.removeAll(removedList)
         notifyItemRangeRemoved(position + 1, removedList.size);
+        notifyItemRangeChanged(position+1,mDatas.size-position-1)
     }
 
 
