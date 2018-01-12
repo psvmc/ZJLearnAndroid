@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import cn.psvmc.utils.DensityUtils
 import cn.psvmc.zjlearnandroid.MainRecycleView.Model.ListItemModel
@@ -55,13 +56,27 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         var pL = itemHolder.outerLayout.paddingLeft;
         var pR = itemHolder.outerLayout.paddingRight;
 
-        itemHolder.outerLayout.setPadding(DensityUtils.dp2px(context,20f)* itemData.level + DensityUtils.dp2px(context,10f),pT,pB,pR);
+        if (itemData.level == 0) {
+            itemHolder.itemView.setBackgroundResource(R.color.zj_gay_background)
+            if(itemData.isexpand){
+                itemHolder.bottomLine.visibility = View.VISIBLE
+            }else{
+                itemHolder.bottomLine.visibility = View.INVISIBLE
+            }
+            itemHolder.topLine.visibility = View.VISIBLE
+        } else {
+            itemHolder.itemView.setBackgroundResource(R.color.zj_white)
+            itemHolder.topLine.visibility = View.INVISIBLE
+            itemHolder.bottomLine.visibility = View.INVISIBLE
+        }
+
+        itemHolder.outerLayout.setPadding(DensityUtils.dp2px(context, 20f) * itemData.level + DensityUtils.dp2px(context, 0f), pT, pB, pR);
 
         itemHolder.itemView.setOnClickListener({
             mOnItemClickListener?.onItemClick(itemHolder.itemView, position);
         })
 
-        itemHolder.checkImageView.setOnClickListener({
+        itemHolder.checkOuterLayout.setOnClickListener({
             mOnItemClickListener?.onCheckClick(position)
         })
     }
@@ -81,7 +96,7 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         notifyItemChanged(position)
     }
 
-    fun add(position: Int, list: ArrayList<TreeItemModel>) {
+    fun addList(position: Int, list: ArrayList<TreeItemModel>) {
         var position = position
         if (position > mDatas.size) {
             position = mDatas.size
@@ -91,7 +106,9 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         }
         mDatas.addAll(position, list);
         notifyItemRangeInserted(position, list.size)
-        notifyItemRangeChanged(position+list.size-1,mDatas.size-position-list.size+1)
+        if(mDatas.size - position - list.size + 1 > 0){
+            notifyItemRangeChanged(position + list.size - 1, mDatas.size - position - list.size + 1)
+        }
     }
 
     fun removeSon(position: Int) {
@@ -115,7 +132,31 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         }
         mDatas.removeAll(removedList)
         notifyItemRangeRemoved(position + 1, removedList.size);
-        notifyItemRangeChanged(position+1,mDatas.size-position-1)
+        if(mDatas.size - position - 1>0){
+            notifyItemRangeChanged(position + 1, mDatas.size - position - 1)
+        }
+
+    }
+
+    fun updateSon(position: Int) {
+        var position = position
+        if (position > mDatas.size) {
+            position = mDatas.size
+        }
+        if (position < 0) {
+            position = 0
+        }
+
+        var itemData = mDatas.get(position);
+        var updateList = ArrayList<TreeItemModel>();
+        for (i in position + 1..mDatas.size - 1) {
+            if (mDatas.get(i).level > itemData.level) {
+                updateList.add(mDatas.get(i))
+            } else {
+                break
+            }
+        }
+        notifyItemRangeChanged(position + 1, updateList.size);
     }
 
 
@@ -123,13 +164,20 @@ open class TreeViewListAdapter(private val context: Context, private val mDatas:
         val checkImageView: ImageView
         val nameTextView: TextView
         val arrowImageView: ImageView
-        var outerLayout:LinearLayout
+        var outerLayout: LinearLayout
+        var checkOuterLayout: RelativeLayout
+        var topLine:View
+        var bottomLine:View
+
 
         init {
             checkImageView = itemView.findViewById(R.id.checkImageView) as ImageView
             nameTextView = itemView.findViewById(R.id.nameTextView) as TextView
             arrowImageView = itemView.findViewById(R.id.arrowImageView) as ImageView
             outerLayout = itemView.findViewById(R.id.outerLayout) as LinearLayout
+            checkOuterLayout = itemView.findViewById(R.id.checkOuterLayout) as RelativeLayout
+            topLine = itemView.findViewById(R.id.topLine) as View
+            bottomLine = itemView.findViewById(R.id.bottomLine) as View
         }
     }
 
