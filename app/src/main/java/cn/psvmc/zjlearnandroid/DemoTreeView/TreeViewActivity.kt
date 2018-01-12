@@ -17,13 +17,53 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
 
     private var mListAdapter: TreeViewListAdapter? = null
     private val mDatas = ArrayList<TreeItemModel>()
+    private val mDatasBak = ArrayList<TreeItemModel>()
     private var context: Context = this
+    public var isShowAllName = true;
+
+    private var selectIdArr: ArrayList<Int> = ArrayList();
+    private var selectNameArr: ArrayList<String> = ArrayList();
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tree_view)
         this.initBack()
         this.initRecycleView()
+
+
+        resetButton.setOnClickListener { v ->
+            resetButtonClick()
+        }
+
+
+        okButtom.setOnClickListener { v ->
+            okButtonClick()
+        }
+    }
+
+
+    fun resetButtonClick() {
+        for (item in mDatasBak) {
+            unselectSon(item)
+        }
+        mListAdapter!!.notifyDataSetChanged();
+        selectIdArr.removeAll(selectIdArr)
+        selectNameArr.removeAll(selectNameArr)
+    }
+
+    fun okButtonClick() {
+        selectIdArr.removeAll(selectIdArr)
+        selectNameArr.removeAll(selectNameArr)
+        for (item in this.mDatasBak) {
+            if (item.isselect) {
+                this.selectIdArr.add(item.id)
+                this.selectNameArr.add(item.name)
+            }
+            this.getCheckSonItemWithName(item, item.name)
+        }
+        Log.i(TAG, "选中的id为：" + this.selectIdArr)
+        Log.i(TAG, "选中的name为：" + this.selectNameArr)
     }
 
     /**
@@ -78,7 +118,7 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
                 )
         )
         var model02 = TreeItemModel(2, "数学", 0, arrayListOf<TreeItemModel>(
-                TreeItemModel(46, "第1章", 1,null),
+                TreeItemModel(46, "第1章", 1, null),
                 TreeItemModel(47, "第2章", 1, null)
         ))
         var model03 = TreeItemModel(3, "英语", 0, arrayListOf<TreeItemModel>(
@@ -98,19 +138,22 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
                                 TreeItemModel(27, "第4节", 2, null)
                         )
                 )
-        )
-        )
+        ))
 
         mDatas.add(model01)
         mDatas.add(model02)
         mDatas.add(model03)
+
+        mDatasBak.add(model01)
+        mDatasBak.add(model02)
+        mDatasBak.add(model03)
 
         mListAdapter!!.notifyDataSetChanged()
     }
 
     override fun onItemClick(view: View, position: Int) {
         var itemData = this.mDatas.get(position);
-        if(mListAdapter != null){
+        if (mListAdapter != null) {
             if (itemData.childArr != null) {
                 itemData.isexpand = !itemData.isexpand;
                 mListAdapter!!.update(position)
@@ -129,11 +172,11 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
         var itemData = this.mDatas.get(position);
         itemData.isselect = !itemData.isselect;
         mListAdapter!!.update(position)
-        if(itemData.isselect){
+        if (itemData.isselect) {
             selectSon(itemData)
             mListAdapter!!.updateSon(position)
             selectParent(itemData)
-        }else{
+        } else {
             unselectSon(itemData)
             mListAdapter!!.updateSon(position)
             unselectParent(itemData)
@@ -141,10 +184,10 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //选中所有的子项
-    fun selectSon(itemData:TreeItemModel){
+    fun selectSon(itemData: TreeItemModel) {
         var childArr = itemData.childArr
-        if(childArr != null){
-            childArr.forEach(fun(item:  TreeItemModel){
+        if (childArr != null) {
+            childArr.forEach(fun(item: TreeItemModel) {
                 item.isselect = true
                 selectSon(item)
             })
@@ -152,10 +195,10 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //取消选中所有的子项
-    fun unselectSon(itemData:TreeItemModel){
+    fun unselectSon(itemData: TreeItemModel) {
         var childArr = itemData.childArr
-        if(childArr != null){
-            childArr.forEach(fun(item:  TreeItemModel){
+        if (childArr != null) {
+            childArr.forEach(fun(item: TreeItemModel) {
                 item.isselect = false
                 unselectSon(item)
             })
@@ -163,10 +206,10 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //如果子项全部选中该项选中
-    fun selectParent(itemData:TreeItemModel){
+    fun selectParent(itemData: TreeItemModel) {
         var parentItem = getParentItem(itemData)
-        if(parentItem != null){
-            if(isAllChildCheck(parentItem)){
+        if (parentItem != null) {
+            if (isAllChildCheck(parentItem)) {
                 parentItem.isselect = true;
                 selectParent(parentItem)
                 mListAdapter!!.update(getItemPosition(parentItem))
@@ -175,10 +218,10 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //如果子项有未选中的取消该项选中
-    fun unselectParent(itemData:TreeItemModel){
+    fun unselectParent(itemData: TreeItemModel) {
         var parentItem = getParentItem(itemData)
-        if(parentItem != null){
-            if(!isAllChildCheck(parentItem)){
+        if (parentItem != null) {
+            if (!isAllChildCheck(parentItem)) {
                 parentItem.isselect = false;
                 unselectParent(parentItem)
                 mListAdapter!!.update(getItemPosition(parentItem))
@@ -187,9 +230,9 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //获取对象的position
-    fun getItemPosition(itemData:TreeItemModel):Int{
-        for(i in 0.. mDatas.size-1){
-            if(mDatas.get(i).equals(itemData)){
+    fun getItemPosition(itemData: TreeItemModel): Int {
+        for (i in 0..mDatas.size - 1) {
+            if (mDatas.get(i).equals(itemData)) {
                 return i;
             }
         }
@@ -197,12 +240,12 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //是否所有的子节点都选中了
-    fun isAllChildCheck(itemData:TreeItemModel):Boolean{
+    fun isAllChildCheck(itemData: TreeItemModel): Boolean {
         var childArr = itemData.childArr
         var result = true;
-        if(childArr != null){
-            childArr.forEach(fun(item:  TreeItemModel){
-                if(!item.isselect){
+        if (childArr != null) {
+            childArr.forEach(fun(item: TreeItemModel) {
+                if (!item.isselect) {
                     result = false
                     return@forEach
                 }
@@ -212,12 +255,12 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
     }
 
     //获取父级
-    fun getParentItem(itemData:TreeItemModel) : TreeItemModel?{
-        for(item in mDatas){
+    fun getParentItem(itemData: TreeItemModel): TreeItemModel? {
+        for (item in mDatas) {
             var childArr = item.childArr
-            if(childArr != null){
-                for(itemData2 in childArr){
-                    if(itemData2.equals(itemData)){
+            if (childArr != null) {
+                for (itemData2 in childArr) {
+                    if (itemData2.equals(itemData)) {
                         return item
                     }
                 }
@@ -225,5 +268,31 @@ class TreeViewActivity : AppCompatActivity(), TreeViewListAdapter.OnItemClickLis
 
         }
         return null;
+    }
+
+
+    //依次遍历所有的子节点
+    fun getCheckSonItemWithName(itemData: TreeItemModel, itemName: String) {
+        var childArr = itemData.childArr
+        if (childArr != null) {
+            for (itemData2 in childArr) {
+                var tempItemName = "";
+                if (itemName != "") {
+                    tempItemName = itemName +"-"+ itemData2.name
+                } else {
+                    tempItemName = itemData2.name
+                }
+                if (itemData2.isselect) {
+                    this.selectIdArr.add(itemData2.id)
+                    if (this.isShowAllName) {
+                        this.selectNameArr.add(tempItemName)
+                    } else {
+                        this.selectNameArr.add(itemData2.name)
+                    }
+                }
+                this.getCheckSonItemWithName(itemData2, tempItemName);
+            }
+        }
+
     }
 }
